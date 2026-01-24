@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Forms</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="robots" content="noindex,nofollow">
+</head>
+
+<body>
+    <section class="hero-section">
+  <div id="flower-container"></div>
+  <div class="hero-photo">
+    <img src="2025-05-23_15-58-47_030.jpeg" alt="新郎新婦の写真">
+    <div class="hero-text">
+      <h2>Happy Wedding</h2>
+      <p>Akari & Rei</p>
+    </div>
+  </div>
+</section>
+
+<section class="action-area">
+  <div class="like-container">
+    <button id="like-btn" class="like-button">
+      <span class="heart">❤</span> おめでとう！
+    </button>
+    <div class="counter-box">
+      <span id="like-count" class="count">124</span>
+      <span class="count-unit">人がお祝いしています</span>
+    </div>
+  </div>
+</section>
+
+
+<section>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-date">2021.04</div>
+                <div class="timeline-content">
+                <h3>社会人としてのスタート</h3>
+                <p>エンジニアとしてのキャリアを開始。基礎を叩き込む日々。</p>
+                </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-date">2023.06</div>
+            <div class="timeline-content card-flip">
+                <div class="card-front">
+                <h3><i class="fas fa-birthday-cake"></i> 初めての誕生日</h3>
+                <p>クリックして思い出を見る</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-date">2024.10</div>
+            <div class="timeline-content">
+                <h3>大きな人生の転機</h3>
+                <p>自分自身の価値観や「誠実さ」について深く向き合う時期。</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-date">2025.09</div>
+            <div class="timeline-content card-flip">
+                <div class="card-front">
+                    <h3>友人夫妻との蔵前散歩</h3>
+                    <p>please touch here</p>
+                </div>
+                <div class="card-back">
+                    <img src="2025-11-15_18-00-44_650.jpeg" alt="思い出の写真">
+                    <p>スカイツリーが綺麗だった日</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-date">2025.12</div>
+            <div class="timeline-content card-flip">
+                <div class="card-front">
+                    <h3><i class="fas fa-ring"></i> プロポーズ</h3>
+                    <p>最高の瞬間でした</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="relation-map">
+  <div class="node center">
+    <div class="label">あなた</div>
+  </div>
+
+  <div class="node-group">
+    <div class="node partner">彼女</div>
+    <div class="node family">家族</div>
+    <div class="node friends">友人</div>
+    <div class="node relatives">親戚</div>
+    <div class="node colleagues">会社の同僚</div>
+  </div>
+
+  <div class="lines"></div>
+</div>
+<div id="message-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h3 id="modal-name"></h3> <p id="modal-text"></p>
+   </div>
+</div>
+<script src="app.js"></script>
+</body>
+
+</html>
