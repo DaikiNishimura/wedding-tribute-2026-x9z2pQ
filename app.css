@@ -472,7 +472,47 @@ body {
     padding: 20px;
     font-size: 1.4rem;
   }
+
+  /* Threadsコンテナの余白調整 */
+  .threads-container {
+    width: 100%;
+    padding: 0 10px; /* 左右の余白を少し詰める */
+    margin-bottom: 50px;
+  }
+
+  /* 入力カード内の調整 */
+  .comment-input-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  /* 投稿ボタンを少し押しやすく */
+  .threads-post-btn {
+    padding: 8px 20px;
+  }
+
+  /* コメント一覧の文字サイズ調整 */
+  .comment-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ヒーローフォトが画面からはみ出さないように */
+  .hero-photo {
+    width: 95% !important;
+    max-width: none;
+  }
 }
+
+/* 全体共通：要素が画面を突き抜けるのを防ぐ魔法のコード */
+* {
+  box-sizing: border-box;
+}
+
+img, textarea, input {
+  max-width: 100%;
+}
+
 
 /* タップした瞬間にボタンを少し沈ませる（フィードバック） */
 .card-flip:active, .node:active {
