@@ -34,7 +34,6 @@
   </div>
 </section>
 
-
 <section>
     <div class="timeline">
         <div class="timeline-item">
@@ -111,6 +110,155 @@
    </div>
 </div>
 <script src="app.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  import { getDatabase, ref, onValue, set, runTransaction } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+  // あなたのプロジェクト設定（Firebaseコンソールの「プロジェクト設定」＞「マイアプリ」から取得）
+  const firebaseConfig = {
+    apiKey: "AIzaSyCw28qvMsfoQ7ii59RwvquQqERe8wugHGc",
+    authDomain: "wedding-likes.firebaseapp.com",
+    databaseURL: "https://wedding-likes-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "wedding-likes",
+    storageBucket: "wedding-likes.firebasestorage.app",
+    messagingSenderId: "272973159971",
+    appId: "1:272973159971:web:db5b18641e3de842c49b96",
+    measurementId: "G-QX5JXNS099"
+  };
+
+  // Firebase初期化
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const likesRef = ref(db, 'likes_count');
+
+  const likeCountElement = document.getElementById('like-count');
+  const likeBtn = document.getElementById('like-btn');
+
+  // 3. データのリアルタイム受信
+  onValue(likesRef, (snapshot) => {
+    const data = snapshot.val();
+    likeCountElement.innerText = data || 124; // データがなければ初期値
+  });
+
+  // 4. クリック時のカウントアップ処理（トランザクション）
+  likeBtn.addEventListener('click', () => {
+    runTransaction(likesRef, (currentCount) => {
+      // 現在の値を取り込み、数値でなければ124（初期値）にする
+      const count = parseInt(currentCount) || 124;
+      return count + 1;
+    });
+
+    // windowに登録した演出を呼び出す
+    if (typeof window.createFloatingHeart === 'function') {
+      window.createFloatingHeart();
+    }
+  });
+
+  const commentsRef = ref(db, 'comments');
+  const nameInput = document.getElementById('guest-name');
+  const messageInput = document.getElementById('guest-message');
+  const submitBtn = document.getElementById('submit-comment');
+  const displayArea = document.getElementById('comments-display');
+
+  // 投稿ボタンクリック
+  submitBtn.addEventListener('click', () => {
+    const name = nameInput.value.trim() || "匿名ゲスト";
+    const text = messageInput.value.trim();
+
+    if (text) {
+      // 1. Firebaseに保存
+      push(commentsRef, { name, text, timestamp: Date.now() });
+
+      // 2. キーワードチェック（おめでとう、祝、Happy、お幸せに、など）
+      const keywords = ["おめでとう", "祝", "happy", "お幸せに", "おめ"];
+      const isCelebration = keywords.some(key => text.toLowerCase().includes(key));
+
+      if (isCelebration) {
+        launchCelebration(); // 特別な演出を実行
+      }
+
+      messageInput.value = ''; // 入力欄をクリア
+    }
+  });
+
+  // コメントをリアルタイムで受信して表示
+  onValue(commentsRef, (snapshot) => {
+    displayArea.innerHTML = ''; // 一旦クリア
+    const data = snapshot.val();
+    if (data) {
+      Object.values(data).forEach(comment => {
+        const div = document.createElement('div');
+        div.className = 'comment-item';
+        const date = new Date(comment.timestamp).toLocaleString();
+        div.innerHTML = `
+          <span class="name">@${comment.name}</span>
+          <p class="text">${comment.text}</p>
+          <span class="date">${date}</span>
+        `;
+        displayArea.appendChild(div);
+      });
+    }
+  });
+
+  // 投稿機能
+  submitBtn.addEventListener('click', () => {
+    const name = nameInput.value.trim() || "匿名ゲスト";
+    const text = messageInput.value.trim();
+
+    if (text) {
+      push(commentsRef, {
+        name: name,
+        text: text,
+        timestamp: Date.now()
+      });
+      messageInput.value = ''; // 入力欄をクリア
+    }
+  });
+
+  // 表示機能 (Threads風にHTMLを組み立て)
+  onValue(commentsRef, (snapshot) => {
+    displayArea.innerHTML = '';
+    const data = snapshot.val();
+    if (data) {
+      // 新しい順に並べるため配列にしてリバース
+      const entries = Object.values(data).reverse();
+      entries.forEach(comment => {
+        const div = document.createElement('div');
+        div.className = 'comment-item';
+        const timeStr = new Date(comment.timestamp).toLocaleDateString();
+        div.innerHTML = `
+          <div class="user-avatar" style="background:#f0f0f0; display:flex; align-items:center; justify-content:center; font-size:10px;">User</div>
+          <div class="comment-content">
+            <div class="comment-author">${comment.name}</div>
+            <p class="comment-text">${comment.text}</p>
+            <span class="comment-date">${timeStr}</span>
+          </div>
+        `;
+        displayArea.appendChild(div);
+      });
+    }
+  });
+</script>
+
+<section class="threads-container">
+  <div class="comment-input-card">
+    <div class="input-header">
+      <img src="2025-05-23_15-58-47_030.jpeg" class="user-avatar" alt="me">
+      <span class="user-name">Guest</span>
+    </div>
+    <textarea id="guest-message" placeholder="新郎新婦にお祝いメッセージを書く..."></textarea>
+    <div class="input-footer">
+      <input type="text" id="guest-name" placeholder="お名前">
+      <button id="submit-comment" class="threads-post-btn">投稿</button>
+    </div>
+  </div>
+
+  <div id="comments-display" class="threads-feed">
+    </div>
+</section>
+
 </body>
 
 </html>

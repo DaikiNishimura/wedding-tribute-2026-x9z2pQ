@@ -1,3 +1,21 @@
+// createFloatingHeart関数の中身を少し変更
+window.createFloatingHeart = function() {
+  const heart = document.createElement('span');
+  heart.innerText = '❤';
+  heart.className = 'floating-heart';
+  
+  // 左右に少し散らばるように
+  const x = (Math.random() - 0.5) * 150 + 'px';
+  heart.style.setProperty('--x', x);
+  
+  // ボタンの真ん中から発生させる
+  likeBtn.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 800);
+}
+
 function createPetal() {
   const container = document.getElementById('flower-container');
   const petal = document.createElement('div');
@@ -25,54 +43,6 @@ function createPetal() {
 
 // 0.3秒ごとに花びらを生成
 setInterval(createPetal, 300);
-
-let count = 124; // 初期値
-const likeBtn = document.getElementById('like-btn');
-const likeCount = document.getElementById('like-count');
-
-likeBtn.addEventListener('click', () => {
-  // 1. カウントアップ
-  count++;
-  likeCount.innerText = count;
-
-  // 2. ハートを生成
-  createFloatingHeart();
-});
-
-// function createFloatingHeart() {
-//   const heart = document.createElement('span');
-//   heart.innerText = '❤';
-//   heart.className = 'floating-heart';
-  
-//   // 飛び出す方向をランダムに設定
-//   const x = (Math.random() - 0.5) * 100 + 'px';
-//   heart.style.setProperty('--x', x);
-  
-//   likeBtn.appendChild(heart);
-
-//   // アニメーション終了後に削除
-//   setTimeout(() => {
-//     heart.remove();
-//   }, 800);
-// }
-
-// createFloatingHeart関数の中身を少し変更
-function createFloatingHeart() {
-  const heart = document.createElement('span');
-  heart.innerText = '❤';
-  heart.className = 'floating-heart';
-  
-  // 左右に少し散らばるように
-  const x = (Math.random() - 0.5) * 150 + 'px';
-  heart.style.setProperty('--x', x);
-  
-  // ボタンの真ん中から発生させる
-  likeBtn.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 800);
-}
 
 // 「監視」する設定
 const observerOptions = {
@@ -139,4 +109,26 @@ const password = prompt("合言葉を入力してください（二人の記念�
 if (password !== "1225") { // 例：1225が正解の場合
   alert("合言葉が違います。ページを表示できません。");
   document.body.innerHTML = "<h1>認証が必要です</h1>"; // 中身を消す
+}
+
+// 3. 特大演出の関数
+function launchCelebration() {
+  const emojis = ["🎉", "✨", "❤️", "🥂", "🌸", "🎊"];
+  
+  for (let i = 0; i < 40; i++) { // 40個のエフェクトを降らせる
+    setTimeout(() => {
+      const emojiEl = document.createElement('div');
+      emojiEl.className = 'celebration-emoji';
+      emojiEl.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      
+      emojiEl.style.left = Math.random() * 100 + 'vw';
+      emojiEl.style.fontSize = (Math.random() * 20 + 20) + 'px';
+      emojiEl.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      
+      document.body.appendChild(emojiEl);
+      
+      // アニメーション終了後に削除
+      setTimeout(() => emojiEl.remove(), 4000);
+    }, i * 50); // 少しずつずらして降らせる
+  }
 }
