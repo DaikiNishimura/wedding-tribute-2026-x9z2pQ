@@ -14,7 +14,9 @@
     <section class="hero-section">
   <div id="flower-container"></div>
   <div class="hero-photo">
-    <img src="2025-05-23_15-58-47_030.jpeg" alt="新郎新婦の写真">
+    <div class="slider-img active" style="background-image: url('main1.jpeg');"></div>
+    <div class="slider-img" style="background-image: url('main2.jpeg');"></div>
+    <div class="slider-img" style="background-image: url('main3.jpeg');"></div>
     <div class="hero-text">
       <h2>Happy Wedding</h2>
       <p>Akari & Rei</p>
@@ -78,6 +80,39 @@
       </div>
     </div>
   </div>
+</div>
+
+<section class="bgm-section">
+    <button id="toggle-bgm" class="bgm-open-btn">
+        <i class="fas fa-music"></i> 披露宴のBGMリストを見る
+    </button>
+
+    <div id="bgm-list-container" class="bgm-list-hidden">
+        <ul class="bgm-list">
+            <li class="bgm-item" data-scene="迎賓" data-music="曲名 / アーティスト名" data-desc="ゲストの皆様をお迎えする際に流しました。リラックスした雰囲気作りを意識しました。" data-img="geihin.jpeg">
+                <span class="scene-tag">迎賓</span> 曲名 / アーティスト名
+            </li>
+            <li class="bgm-item" data-scene="新郎新婦入場" data-music="曲名 / アーティスト名" data-desc="一番こだわった入場曲です！扉が開く瞬間の高揚感を大切にしました。" data-img="nyujyou.jpeg">
+                <span class="scene-tag">入場</span> 曲名 / アーティスト名
+            </li>
+            <li class="bgm-item" data-scene="お見送り" data-music="曲名 / アーティスト名" data-desc="今日一日の感謝を込めて。爽やかな気分で帰路についていただけるように選びました。" data-img="omiokuri.jpeg">
+                <span class="scene-tag">送賓</span> 曲名 / アーティスト名
+            </li>
+        </ul>
+    </div>
+</section>
+
+<div id="bgm-modal" class="modal">
+    <div class="modal-content bgm-modal-content">
+        <span class="close-bgm-modal">&times;</span>
+        <div id="bgm-modal-bg" class="modal-bg-img">
+            <div class="modal-overlay">
+                <h3 id="bgm-modal-scene"></h3>
+                <h4 id="bgm-modal-title"></h4>
+                <p id="bgm-modal-desc"></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <section>

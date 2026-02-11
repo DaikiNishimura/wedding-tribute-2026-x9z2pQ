@@ -1,3 +1,22 @@
+function startHeroSlider() {
+  const slides = document.querySelectorAll('.slider-img');
+  let currentSlide = 0;
+
+  setInterval(() => {
+    // 現在の画像から active クラスを消す
+    slides[currentSlide].classList.remove('active');
+
+    // 次のスライド番号へ（3枚なので 0→1→2→0... とループ）
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    // 次の画像に active クラスを付与
+    slides[currentSlide].classList.add('active');
+  }, 4000); // 4秒ごとに実行
+}
+
+// ページ読み込み時に実行
+window.addEventListener('DOMContentLoaded', startHeroSlider);
+
 // createFloatingHeart関数の中身を少し変更
 window.createFloatingHeart = function() {
   const heart = document.createElement('span');
@@ -59,6 +78,41 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, observerOptions);
+
+// BGMリストの開閉
+const toggleBtn = document.getElementById('toggle-bgm');
+const bgmContainer = document.getElementById('bgm-list-container');
+
+toggleBtn.addEventListener('click', () => {
+    bgmContainer.classList.toggle('show');
+    toggleBtn.innerHTML = bgmContainer.classList.contains('show') ? 
+        '<i class="fas fa-chevron-up"></i> 閉じる' : '<i class="fas fa-music"></i> 披露宴のBGMリストを見る';
+});
+
+// 各曲をクリックした時のポップアップ処理
+const bgmItems = document.querySelectorAll('.bgm-item');
+const bgmModal = document.getElementById('bgm-modal');
+const closeBgm = document.querySelector('.close-bgm-modal');
+
+bgmItems.forEach(item => {
+    item.addEventListener('click', () => {
+        // data属性から情報を取得
+        const scene = item.getAttribute('data-scene');
+        const title = item.getAttribute('data-music');
+        const desc = item.getAttribute('data-desc');
+        const img = item.getAttribute('data-img');
+
+        // モーダルに反映
+        document.getElementById('bgm-modal-scene').innerText = scene;
+        document.getElementById('bgm-modal-title').innerText = title;
+        document.getElementById('bgm-modal-desc').innerText = desc;
+        document.getElementById('bgm-modal-bg').style.backgroundImage = `url(${img})`;
+
+        bgmModal.style.display = 'block';
+    });
+});
+
+closeBgm.onclick = () => bgmModal.style.display = 'none';
 
 // すべての .timeline-content を監視対象にする
 document.querySelectorAll('.timeline-content').forEach(item => {
