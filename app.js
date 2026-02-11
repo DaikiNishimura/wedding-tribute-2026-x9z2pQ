@@ -61,7 +61,7 @@ function createPetal() {
 }
 
 // 0.3秒ごとに花びらを生成
-setInterval(createPetal, 300);
+// setInterval(createPetal, 300);
 
 // 「監視」する設定
 const observerOptions = {

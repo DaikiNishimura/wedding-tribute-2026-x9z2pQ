@@ -11,20 +11,20 @@
 </head>
 
 <body>
-    <section class="hero-section">
-  <div id="flower-container"></div>
-  <div class="hero-photo">
-    <div class="slider-img active" style="background-image: url('main1.jpeg');"></div>
-    <div class="slider-img" style="background-image: url('main2.jpeg');"></div>
-    <div class="slider-img" style="background-image: url('main3.jpeg');"></div>
-    <div class="hero-text">
-      <h2>Happy Wedding</h2>
-      <p>Akari & Rei</p>
+  <section class="hero-section">
+    <div id="flower-container"></div>
+    <div class="hero-photo">
+      <div class="slider-img active" style="background-image: url('main1.jpeg');"></div>
+      <div class="slider-img" style="background-image: url('main2.jpeg');"></div>
+      <div class="slider-img" style="background-image: url('main3.jpeg');"></div>
+      <div class="hero-text">
+        <h2>Happy Wedding</h2>
+        <p>Akari & Rei</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
+<section class="googlephoto-section">
   <div class="photo-share-container">
     <a href="https://photos.app.goo.gl/7codNTYrmmb6Xaqt8" target="_blank" class="photo-share-btn">
       <!--<i class="fas fa-image google-icon"></i> <span>当日の写真を共有する</span>-->
@@ -36,39 +36,41 @@
   </div>
 </section>
 
-<div class="couple-messages-container">
-  <div class="message-card-wrapper">
-    <div class="message-card groom-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-face card-front">
-        <div class="inner-frame"> <img src="rei.jpeg" alt="新郎">
+<section class="couple-message-section">
+  <div class="couple-messages-container">
+    <div class="message-card-wrapper">
+      <div class="message-card groom-card" onclick="this.classList.toggle('is-flipped')">
+        <div class="card-face card-front">
+          <div class="inner-frame"> <img src="rei.jpeg" alt="新郎">
+          </div>
+          <div class="card-label">Groom</div>
         </div>
-        <div class="card-label">Groom</div>
-      </div>
-      <div class="card-face card-back">
-        <div class="back-content">
-          <h3>To Guests</h3>
-          <p>本日はありがとうございます！</p>
+        <div class="card-face card-back">
+          <div class="back-content">
+            <h3>To Guests</h3>
+            <p>本日はありがとうございます！</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="message-card-wrapper">
-    <div class="message-card bride-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="card-face card-front">
-        <div class="inner-frame"> <img src="akari.jpeg" alt="新婦">
+    <div class="message-card-wrapper">
+      <div class="message-card bride-card" onclick="this.classList.toggle('is-flipped')">
+        <div class="card-face card-front">
+          <div class="inner-frame"> <img src="akari.jpeg" alt="新婦">
+          </div>
+          <div class="card-label">Bride</div>
         </div>
-        <div class="card-label">Bride</div>
-      </div>
-      <div class="card-face card-back">
-        <div class="back-content">
-          <h3>To Guests</h3>
-          <p>最高の一日になりました！</p>
+        <div class="card-face card-back">
+          <div class="back-content">
+            <h3>To Guests</h3>
+            <p>最高の一日になりました！</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <section class="video-section">
     <div class="movie-header">
@@ -112,15 +114,31 @@
     <div id="bgm-list-container" class="bgm-list-hidden">
         <ul class="bgm-list">
             <li class="bgm-item" data-scene="迎賓" data-music="曲名 / アーティスト名" data-desc="ゲストの皆様をお迎えする際に流しました。リラックスした雰囲気作りを意識しました。" data-img="geihin.jpeg">
-                <span class="scene-tag">迎賓</span> 曲名 / アーティスト名
+                <span class="scene-tag">迎賓</span> 115万キロのフィルム / Official髭男dism
             </li>
             <li class="bgm-item" data-scene="新郎新婦入場" data-music="曲名 / アーティスト名" data-desc="一番こだわった入場曲です！扉が開く瞬間の高揚感を大切にしました。" data-img="nyujyou.jpeg">
-                <span class="scene-tag">入場</span> 曲名 / アーティスト名
+                <span class="scene-tag">入場</span> 君の好きなとこ / 平井堅
             </li>
             <li class="bgm-item" data-scene="お見送り" data-music="曲名 / アーティスト名" data-desc="今日一日の感謝を込めて。爽やかな気分で帰路についていただけるように選びました。" data-img="omiokuri.jpeg">
-                <span class="scene-tag">送賓</span> 曲名 / アーティスト名
+                <span class="scene-tag">送賓</span> Marry You / ブルーノ・マーズ
             </li>
         </ul>
+        <!-- <ul class="bgm-list">
+          <li class="bgm-item">
+            <div class="bgm-icon">♪</div>
+            <div class="bgm-info">
+              <span class="bgm-title">曲名が入ります</span>
+              <span class="bgm-artist">アーティスト名</span>
+            </div>
+          </li>
+          <li class="bgm-item">
+            <div class="bgm-icon">♪</div>
+            <div class="bgm-info">
+              <span class="bgm-title">もう一つの曲名</span>
+              <span class="bgm-artist">アーティスト名</span>
+            </div>
+          </li>
+        </ul> -->
     </div>
 </section>
 
@@ -137,7 +155,7 @@
     </div>
 </div>
 
-<section>
+<section class="timeline-section">
     <div class="timeline">
         <div class="timeline-item">
             <div class="timeline-date">2021.04</div>
@@ -191,27 +209,30 @@
     </div>
 </section>
 
-<div class="relation-map">
-  <div class="node center">
-    <div class="label">あなた</div>
-  </div>
+<section class="relation-map-section">
+  <div class="relation-map">
+    <div class="node center">
+      <div class="label">あなた</div>
+    </div>
 
-  <div class="node-group">
-    <div class="node partner">彼女</div>
-    <div class="node family">家族</div>
-    <div class="node friends">友人</div>
-    <div class="node relatives">親戚</div>
-    <div class="node colleagues">会社の同僚</div>
-  </div>
+    <div class="node-group">
+      <div class="node partner">彼女</div>
+      <div class="node family">家族</div>
+      <div class="node friends">友人</div>
+      <div class="node relatives">親戚</div>
+      <div class="node colleagues">会社の同僚</div>
+    </div>
 
-  <div class="lines"></div>
-</div>
-<div id="message-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h3 id="modal-name"></h3> <p id="modal-text"></p>
-   </div>
-</div>
+    <div class="lines"></div>
+  </div>
+  <div id="message-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3 id="modal-name"></h3> <p id="modal-text"></p>
+    </div>
+  </div>
+</section>
+
 <script src="app.js"></script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -345,23 +366,23 @@
   });
 </script>
 
-<section class="threads-container">
-  <div class="comment-input-card">
-    <div class="input-header">
-      <img src="main1.jpeg" class="user-avatar" alt="me">
-      <span class="user-name">Guest</span>
+<section class="comments-full-section"> 
+  <div class="threads-container">
+    <div class="comment-input-card">
+      <div class="input-header">
+        <img src="main1.jpeg" class="user-avatar" alt="me">
+        <span class="user-name">Guest</span>
+      </div>
+      <textarea id="guest-message" placeholder="新郎新婦にお祝いメッセージを書く..."></textarea>
+      <div class="input-footer">
+        <input type="text" id="guest-name" placeholder="お名前">
+        <button id="submit-comment" class="threads-post-btn">投稿</button>
+      </div>
     </div>
-    <textarea id="guest-message" placeholder="新郎新婦にお祝いメッセージを書く..."></textarea>
-    <div class="input-footer">
-      <input type="text" id="guest-name" placeholder="お名前">
-      <button id="submit-comment" class="threads-post-btn">投稿</button>
+    <div id="comments-display" class="threads-feed">
     </div>
   </div>
-
-  <div id="comments-display" class="threads-feed">
-    </div>
 </section>
-
 </body>
 
 </html>

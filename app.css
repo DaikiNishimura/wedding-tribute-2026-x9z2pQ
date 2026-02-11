@@ -2,7 +2,7 @@ body {
   /* 複数の色を混ぜた広大なグラデーション */
   background: linear-gradient(-45deg, #fff5f5, #f0f4f8, #f9f0ff, #fff9f0);
   background-size: 400% 400%; /* 背景を大きく広げて動く余白を作る */
-  animation: gradientBG 15s ease infinite; /* 15秒かけてゆっくりループ */
+  /*animation: gradientBG 15s ease infinite; /* 15秒かけてゆっくりループ */
   margin: 0;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
@@ -19,6 +19,10 @@ body {
     background-position: 0% 50%;
   }
 }
+/* セクション間のわずかな隙間も許さない設定 */
+section {
+  margin-top: -1px; 
+}
 
 .hero-section {
   position: relative;
@@ -29,10 +33,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1; /* 下に配置 */
 }
 
 .hero-photo {
-  position: relative;
+  position: fixed; /* ★ここが重要：スクロールしても画像が動かない */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1; /* 他の要素の背面に配置 */
   width: 100%;       /* 80% から 100% に変更 */
   max-width: none;    /* 450px の制限を解除 */
   height: 100vh;      /* 画面いっぱいの高さに */
@@ -84,6 +94,33 @@ body {
   z-index: 2;
 }
 
+/* --- 下のコンテンツを上に重ねる設定 --- */
+/* メイン画像の下にある最初のセクション（ここでは .action-area など）を調整 */
+.googlephoto-section,
+.couple-message-section,
+.action-area, 
+.profile-section, 
+.video-section, 
+.bgm-section,
+.timeline-section,
+.relation-map-section,
+.threads-container {
+  position: relative;
+  z-index: 10; /* 画像の上に重なるように大きな値を指定 */
+  background-color: #fff; /* ★重要：背景色を白（または希望の色）にして画像が透けないようにする */
+  margin-top: 0 !important;   /* 外側の余白をゼロにする */
+  margin-bottom: 0 !important; /* 外側の余白をゼロにする */
+  padding-top: 60px;          /* 隙間ではなく内側の余白で距離をとる */
+  padding-bottom: 60px;       /* 隙間ではなく内側の余白で距離をとる */
+}
+
+/* 最初のコンテンツが画像の下から始まるように余白を調整 */
+.action-area {
+  margin-top: 0;
+  padding-top: 50px;
+  box-shadow: 0 -15px 30px rgba(0,0,0,0.1);
+}
+
 /* 花びらのスタイル */
 .petal {
   position: absolute;
@@ -106,7 +143,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #eee; /* 年表との区切り */
+  /*border-bottom: 1px solid #eee; /* 年表との区切り */
 }
 
 .like-container {
@@ -536,12 +573,73 @@ body {
 }
 #bgm-list-container.show { max-height: 1000px; margin-top: 20px; }
 
-.bgm-list { list-style: none; padding: 0; }
-.bgm-item {
-    padding: 15px; border-bottom: 1px solid #eee;
-    cursor: pointer; text-align: left; transition: background 0.2s;
+/* BGMリスト全体のコンテナ */
+.bgm-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 500px;
 }
-.bgm-item:hover { background: rgba(0,0,0,0.03); }
+
+/* 各楽曲のアイテム */
+.bgm-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 12px 15px;
+  
+  /* グラスモーフィズム（磨りガラス風）デザイン */
+  background: rgba(255, 255, 255, 0.7); 
+  backdrop-filter: blur(5px); /* 背景をぼかす */
+  -webkit-backdrop-filter: blur(5px);
+  
+  /* 繊細な縁取りと影 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* ホバー（タップ）した時の動き */
+.bgm-item:hover {
+  transform: scale(1.02); /* 少しだけ浮かび上がる */
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* 左側の音符アイコンや番号を置くエリア */
+.bgm-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); /* 上品なシャンパンゴールド系 */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  color: #d4af37;
+  font-size: 1.1rem;
+}
+
+/* 曲名とアーティスト名のテキスト */
+.bgm-info {
+  text-align: left;
+}
+
+.bgm-title {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+}
+
+.bgm-artist {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
 .scene-tag {
     background: #eee; font-size: 11px; padding: 2px 8px;
     border-radius: 10px; margin-right: 10px; color: #666;
@@ -865,12 +963,17 @@ body {
 
 /* --- スマホ向けの調整 (画面幅 768px 以下) --- */
 @media screen and (max-width: 768px) {
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 横揺れ防止 */
+  }
   
   /* 1. ヒーローセクションの写真サイズをスマホに最適化 */
-  .hero-photo {
-    width: 100% !important;
-    height: 80vh;      /* スマホで見やすい高さに調整 */
-    border-radius: 0 !important;
+  .hero-section, .hero-photo {
+    width: 100vw !important; /* ビューポート幅いっぱいに指定 */
+    left: 0;
+    right: 0;
   }
 
   .photo-share-btn {
@@ -1038,11 +1141,22 @@ img, textarea, input {
   margin-top: 5px;
 }
 
+/* 1. 左右の透けを防止する外枠 */
+.comments-full-section {
+  width: 100%;            /* 画面横いっぱい */
+  background-color: #fff; /* ★ここで左右の透けを白で塗りつぶす */
+  position: relative;
+  z-index: 10;            /* 写真の上に重ねる */
+  margin: 0;
+  padding: 40px 0;       /* 上下の余白 */
+}
+
 /* app.css に追加：Threads風デザイン */
 .threads-container {
-  max-width: 580px;
-  margin: 0 auto 100px;
-  padding: 0 16px;
+  background-color: #fff;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .comment-input-card {
