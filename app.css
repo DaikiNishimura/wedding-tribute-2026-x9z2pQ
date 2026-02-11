@@ -973,6 +973,7 @@ section {
   /* ② 境界線を平行にし、透けを防止する */
   section, 
   .googlephoto-section, 
+  .video-section, 
   .bgm-section, 
   .comments-full-section {
     position: relative;
@@ -984,6 +985,12 @@ section {
     box-shadow: none !important;
     width: 100%;
     box-sizing: border-box; /* パディングを含めて100%にする */
+  }
+
+  /* 動画セクションだけは黒で平行に */
+  .video-section {
+    background-color: #000 !important;
+    padding: 0 !important;
   }
 
   /* 1. ヒーローセクションの写真サイズをスマホに最適化 */
@@ -1080,12 +1087,6 @@ section {
   .comment-text {
     font-size: 14px;
     line-height: 1.5;
-  }
-
-  /* ヒーローフォトが画面からはみ出さないように */
-  .hero-photo {
-    width: 95% !important;
-    max-width: none;
   }
 }
 
