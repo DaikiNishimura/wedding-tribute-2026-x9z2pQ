@@ -966,14 +966,44 @@ section {
   body, html {
     margin: 0;
     padding: 0;
+    width: 100%;
     overflow-x: hidden; /* 横揺れ防止 */
   }
-  
+
+  /* ② 境界線を平行にし、透けを防止する */
+  section, 
+  .googlephoto-section, 
+  .video-section, 
+  .bgm-section, 
+  .comments-full-section {
+    position: relative;
+    z-index: 10;
+    background-color: #fff; /* 背景を白で塗りつぶす */
+    margin: 0 !important;
+    padding: 40px 20px;     /* 上下の余白 */
+    border-radius: 0 !important; /* 角丸を消して平行にする */
+    box-shadow: none !important;
+    width: 100%;
+    box-sizing: border-box; /* パディングを含めて100%にする */
+  }
+
   /* 1. ヒーローセクションの写真サイズをスマホに最適化 */
   .hero-section, .hero-photo {
     width: 100vw !important; /* ビューポート幅いっぱいに指定 */
     left: 0;
     right: 0;
+  }
+
+  /* メイン画像の固定設定をスマホでも安定させる */
+  .hero-photo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    z-index: -1;
   }
 
   .photo-share-btn {
