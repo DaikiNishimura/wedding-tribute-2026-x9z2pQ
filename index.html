@@ -24,18 +24,6 @@
   </div>
 </section>
 
-<section class="action-area">
-  <div class="like-container">
-    <button id="like-btn" class="like-button">
-      <span class="heart">❤</span> おめでとう！
-    </button>
-    <div class="counter-box">
-      <span id="like-count" class="count">124</span>
-      <span class="count-unit">人がお祝いしています</span>
-    </div>
-  </div>
-</section>
-
 <section>
   <div class="photo-share-container">
     <a href="https://photos.app.goo.gl/7codNTYrmmb6Xaqt8" target="_blank" class="photo-share-btn">
@@ -81,6 +69,40 @@
     </div>
   </div>
 </div>
+
+<section class="video-section">
+    <div class="movie-header">
+        <span class="movie-tag">Highlight Movie</span>
+        <h3 class="movie-title">Our Special Day - 15s Memories</h3>
+    </div>
+
+    <div class="highlight-movie-container" style="width: 100%; max-width: 900px;">
+        <video id="highlight-video" playsinline controls preload="metadata">
+            <source src="highlight-movie.mov" type="video/mp4">
+            ご使用のブラウザは動画再生に対応していません。
+        </video>
+    </div>
+
+    <div id="video-thanks-message" class="video-thanks-hidden">
+        <p class="thanks-title">Thank you for watching!</p>
+        <p class="thanks-text">
+            この15秒に収まりきらないほどの感謝を込めて。<br>
+            これからも私たちをよろしくお願いします。
+        </p>
+    </div>
+</section>
+
+<section class="action-area">
+  <div class="like-container">
+    <button id="like-btn" class="like-button">
+      <span class="heart">❤</span> おめでとう！
+    </button>
+    <div class="counter-box">
+      <span id="like-count" class="count">124</span>
+      <span class="count-unit">人がお祝いしています</span>
+    </div>
+  </div>
+</section>
 
 <section class="bgm-section">
     <button id="toggle-bgm" class="bgm-open-btn">
@@ -326,7 +348,7 @@
 <section class="threads-container">
   <div class="comment-input-card">
     <div class="input-header">
-      <img src="2025-05-23_15-58-47_030.jpeg" class="user-avatar" alt="me">
+      <img src="main1.jpeg" class="user-avatar" alt="me">
       <span class="user-name">Guest</span>
     </div>
     <textarea id="guest-message" placeholder="新郎新婦にお祝いメッセージを書く..."></textarea>
