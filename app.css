@@ -973,7 +973,6 @@ section {
   /* ② 境界線を平行にし、透けを防止する */
   section, 
   .googlephoto-section, 
-  .video-section, 
   .bgm-section, 
   .comments-full-section {
     position: relative;
