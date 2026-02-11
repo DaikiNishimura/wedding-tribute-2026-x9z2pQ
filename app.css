@@ -33,11 +33,12 @@ body {
 
 .hero-photo {
   position: relative;
-  width: 80%;
-  max-width: 450px;
-  height: 80vh;
-  overflow: hidden; /* はみ出し防止 */
-  border-radius: 20px; /* 今までのデザインを継承 */
+  width: 100%;       /* 80% から 100% に変更 */
+  max-width: none;    /* 450px の制限を解除 */
+  height: 100vh;      /* 画面いっぱいの高さに */
+  overflow: hidden;
+  border-radius: 0;   /* 角の丸みを 0 にして角張らせる */
+  margin: 0;          /* 余計な余白を消去 */
 }
 
 /* スライド画像共通設定 */
@@ -390,6 +391,135 @@ body {
   transform: rotateY(180deg); /* これがカードを回転させる命令です */
 }
 
+.highlight-movie-container {
+    width: 100%;
+    max-width: 800px; /* PCで見るときに大きすぎないよう制限（お好みで） */
+    margin: 40px auto;
+    background: #000;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .movie-header {
+      text-align: left;
+      margin-bottom: 15px;
+  }
+
+  .movie-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #d4af37; /* ゴールド */
+      border: 1px solid #d4af37;
+      padding: 2px 8px;
+      border-radius: 4px;
+  }
+
+  .movie-header h3 {
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: 300;
+  }
+
+  /* 動画の比率（16:9）を保ちつつレスポンシブ対応 */
+  .video-responsive {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9の比率 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 4px;
+  }
+
+  .video-responsive iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+
+  .video-wrapper {
+      width: 100%;
+      background: #000;
+      border-radius: 4px;
+      overflow: hidden;
+      line-height: 0; /* 下部の謎の隙間を消す */
+  }
+
+  .video-section {
+    width: 100%;
+    margin-top: 80px; /* ★新郎新婦メッセージとの間に大きな余白を追加 */
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #000;
+    padding: 40px 0; /* 動画の上下に黒い背景の余白を作る */
+  }
+
+  /* タイトル部分のスタイルを整える */
+  .movie-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+
+  .movie-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    padding: 2px 8px;
+    margin-bottom: 10px;
+  }
+
+  .movie-title {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  #highlight-video {
+    width: 100% !important;  /* 親要素の幅いっぱいに広げる */
+    height: auto !important; /* 横幅に合わせて高さを自動計算 */
+    display: block;
+    max-width: 100%;        /* 絶対に画面を突き抜けないようにする */
+  }
+
+  /* メッセージの初期状態：完全に隠す */
+  .video-thanks-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    text-align: center;
+    padding: 30px 20px;
+    background: #fff; /* 背景を白にして読みやすく */
+    width: 100%;
+    visibility: hidden; /* 非表示中はクリック不可にする */
+  }
+
+  /* 動画終了後にJavaScriptで付与するクラス */
+  .video-thanks-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+  }
+
+  .thanks-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .thanks-text {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
 /* BGMセクションの基本スタイル */
 .bgm-section { text-align: center; margin: 40px 0; }
 
@@ -738,8 +868,9 @@ body {
   
   /* 1. ヒーローセクションの写真サイズをスマホに最適化 */
   .hero-photo {
-    width: 100%;
-    height: 100vh; /* スマホでも全画面表示 */
+    width: 100% !important;
+    height: 80vh;      /* スマホで見やすい高さに調整 */
+    border-radius: 0 !important;
   }
 
   .photo-share-btn {

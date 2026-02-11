@@ -79,6 +79,21 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
+
+// 動画終了後に表示するメッセージ
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('highlight-video');
+    const thanksMessage = document.getElementById('video-thanks-message');
+
+    if (video && thanksMessage) {
+        // 動画が終了した時のイベント
+        video.addEventListener('ended', () => {
+            // クラスを付け替えて表示させる
+            thanksMessage.classList.add('video-thanks-visible');
+        });
+    }
+});
+
 // BGMリストの開閉
 const toggleBtn = document.getElementById('toggle-bgm');
 const bgmContainer = document.getElementById('bgm-list-container');
