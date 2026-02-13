@@ -24,6 +24,90 @@ section {
   margin-top: -1px; 
 }
 
+/* --- オープニングローダー設定 --- */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fdfcfb; /* 画像に合わせた淡い色 */
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease, visibility 1s;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+/* ロゴの文字アニメーション */
+.loader-logo {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #333;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: loaderFadeUp 1.2s ease forwards 0.5s;
+}
+
+.loader-sub {
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: #888;
+    margin-top: 10px;
+    opacity: 0;
+    animation: loaderFadeUp 1.2s ease forwards 0.7s;
+}
+
+.loader-line-container {
+    width: 200px;
+    height: 1px;
+    background-color: rgba(0,0,0,0.1);
+    margin: 20px auto 0;
+    overflow: hidden;
+}
+
+.loader-line {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    transform: translateX(-100%);
+    animation: linePass 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards 0.8s;
+}
+
+/* --- アニメーション定義 --- */
+@keyframes loaderFadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes linePass {
+    to { transform: translateX(100%); }
+}
+
+/* ローダーが消える時のクラス */
+#loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* --- メインコンテンツのフェードイン --- */
+.fade-in-text {
+    opacity: 0;
+    transform: translateY(30px);
+    /* transition: opacity 1.5s ease 1s, transform 1.5s ease 1s; ローダーが消え始めてから表示 */
+}
+
+.fade-in-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .hero-section {
   position: relative;
   width: 100%;
@@ -60,15 +144,13 @@ section {
   height: 100%;
   background-size: cover;
   background-position: center;
-  opacity: 0; /* 最初は透明 */
-  transition: opacity 1.5s ease-in-out; /* 1.5秒かけてヌルっと切り替え */
-  z-index: 1;
+  opacity: 0;
+  transition: opacity 2s ease-in-out; /* 画像の切り替え時間を少し長めに */
 }
 
 /* 表示されている画像の設定 */
 .slider-img.active {
-  opacity: 1; /* 表示 */
-  z-index: 2;
+  opacity: 1;
 }
 
 /* 文字は画像より上に表示 */
@@ -258,6 +340,169 @@ section {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   border-color: #ddd;
+}
+
+/*新郎新婦のメッセージ */
+.couple-message-section {
+  padding: 100px 20px;
+  overflow: hidden; /* 横からのスライドではみ出さないように */
+  background: #fdfcfb;
+}
+
+.message-row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto 80px auto;
+}
+
+.couple-photo img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* メッセージボックスの基本設定 */
+.message-box {
+  flex: 1;
+  padding: 30px;
+  background: #fdfcfb;
+  border-radius: 15px;
+  opacity: 0; /* 最初は隠す */
+  transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* メッセージテキスト全体のフォント設定 */
+.message-box h3,
+.message-text p {
+  /* 游明朝を優先し、上品な明朝体系を指定 */
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS PMincho", serif;
+  -webkit-font-smoothing: antialiased; /* 文字を細くシャープに見せる */
+}
+
+.message-box h3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20px;
+  /* RAKUGEI風：文字の間隔を広げる */
+  letter-spacing: 0.15em; 
+  border-bottom: 1px solid #d4af37;
+  display: inline-block;
+}
+
+.message-text p {
+  /* RAKUGEI風：かなり広めの行間と文字間隔 */
+  line-height: 2.2; 
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0;
+  /* 5行程度の文章が美しく見える設定 */
+}
+
+/* 新婦側のメッセージを写真側に寄せる設定（再確認） */
+.bride-row .message-box {
+  text-align: right;
+  padding-right: 20px; /* 写真とのバランス調整 */
+}
+
+/* モバイル時は読みやすさ優先で中央揃え */
+@media (max-width: 768px) {
+  .bride-row .message-box {
+    text-align: center;
+    padding-right: 40px;
+  }
+}
+
+/* 右から流れる（新郎用） */
+.right-slide {
+  transform: translateX(100px);
+}
+
+/* 左から流れる（新婦用） */
+.left-slide {
+  transform: translateX(-100px);
+}
+
+/* アニメーション開始時（JSで付与） */
+.animate-trigger.is-visible .message-box {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* モバイル対応：新婦も写真を上にしたい場合は order を調整 */
+@media (max-width: 768px) {
+  .message-row {
+    flex-direction: column;
+    text-align: center;
+  }
+  .bride-row {
+    flex-direction: column-reverse; /* 写真を上に */
+  }
+}
+
+/* カード回転の土台 */
+.flip-card {
+  background-color: transparent;
+  width: 200px;
+  height: 200px;
+  perspective: 1000px; /* 立体感を出す */
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d; /* 子要素の3D配置を維持 */
+}
+
+/* タッチ（またはホバー）で回転 */
+.flip-card:active .flip-card-inner,
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* 裏側を隠す */
+  backface-visibility: hidden;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.flip-card-front img, .flip-card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 裏面はあらかじめ180度回転させておく */
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* 画像の上に載せるラベル（任意） */
+.photo-label {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.8);
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  color: #333;
+  letter-spacing: 1px;
 }
 
 /* app.css に追記 */

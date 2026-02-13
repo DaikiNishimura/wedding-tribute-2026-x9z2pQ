@@ -11,61 +11,68 @@
 </head>
 
 <body>
-  <section class="hero-section">
-    <div id="flower-container"></div>
-    <div class="hero-photo">
-      <div class="slider-img active" style="background-image: url('main1.jpeg');"></div>
-      <div class="slider-img" style="background-image: url('main2.jpeg');"></div>
-      <div class="slider-img" style="background-image: url('main3.jpeg');"></div>
-      <div class="hero-text">
-        <h2>Happy Wedding</h2>
-        <p>Akari & Rei</p>
+  <div id="loader">
+      <div class="loader-content">
+          <h1 class="loader-logo">Happy Wedding</h1>
+          <p class="loader-sub">Akari & Rei</p>
+          <div class="loader-line-container">
+              <div class="loader-line"></div>
+          </div>
       </div>
-    </div>
+  </div>
+  
+  <section class="hero-section">
+      <div id="flower-container"></div>
+      <div class="hero-photo">
+          <div class="slider-img active" style="background-image: url('main1.jpeg')"></div>
+          <div class="slider-img" style="background-image: url('main2.jpeg')"></div>
+          <div class="slider-img" style="background-image: url('main3.jpeg')"></div>
+          
+          <div class="hero-text">
+              <h2>Happy Wedding</h2>
+              <p>Akari & Rei</p>
+          </div>
+      </div>
   </section>
 
-<section class="googlephoto-section">
-  <div class="photo-share-container">
-    <a href="https://photos.app.goo.gl/7codNTYrmmb6Xaqt8" target="_blank" class="photo-share-btn">
-      <!--<i class="fas fa-image google-icon"></i> <span>当日の写真を共有する</span>-->
-      <!--<i class="fas fa-images google-icon"></i> <span>当日の写真を共有する</span>-->
-      <i class="fas fa-camera google-icon"></i> <span>当日の写真を共有する</span>
-      <!--<i class="fas fa-cloud-upload-alt google-icon"></i> <span>当日の写真を共有する</span>-->
-    </a>
-    <p class="photo-share-note">※皆様が撮影したお写真をアップロードいただけると嬉しいです！</p>
-  </div>
-</section>
-
 <section class="couple-message-section">
-  <div class="couple-messages-container">
-    <div class="message-card-wrapper">
-      <div class="message-card groom-card" onclick="this.classList.toggle('is-flipped')">
-        <div class="card-face card-front">
-          <div class="inner-frame"> <img src="rei.jpeg" alt="新郎">
-          </div>
-          <div class="card-label">Groom</div>
+  <div class="message-row groom-row animate-trigger">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="rei.jpeg" alt="新郎 洋装">
+          <div class="photo-label">Tuxedo</div>
         </div>
-        <div class="card-face card-back">
-          <div class="back-content">
-            <h3>To Guests</h3>
-            <p>本日はありがとうございます！</p>
-          </div>
+        <div class="flip-card-back">
+          <img src="rei2.jpeg" alt="新郎 和装">
+          <div class="photo-label">Wasou</div>
         </div>
       </div>
     </div>
+    <div class="message-box right-slide">
+      <h3>Rei</h3>
+      <div class="message-text">
+        <p>結婚式ではありがとうございました。皆様の笑顔を見れて、忘れられない思い出ができました。日頃の感謝の気持ちを込めて、あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</p>
+      </div>
+    </div>
+  </div>
 
-    <div class="message-card-wrapper">
-      <div class="message-card bride-card" onclick="this.classList.toggle('is-flipped')">
-        <div class="card-face card-front">
-          <div class="inner-frame"> <img src="akari.jpeg" alt="新婦">
-          </div>
-          <div class="card-label">Bride</div>
+  <div class="message-row bride-row animate-trigger">
+    <div class="message-box left-slide">
+      <h3>Akari</h3>
+      <div class="message-text">
+        <p>結婚式ではありがとうございました。皆様の笑顔を見れて、忘れられない思い出ができました。日頃の感謝の気持ちを込めて、あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</p>
+      </div>
+    </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="akari.jpeg" alt="新婦 洋装">
+          <div class="photo-label">Dress</div>
         </div>
-        <div class="card-face card-back">
-          <div class="back-content">
-            <h3>To Guests</h3>
-            <p>最高の一日になりました！</p>
-          </div>
+        <div class="flip-card-back">
+          <img src="akari2.jpeg" alt="新婦 和装">
+          <div class="photo-label">Wasou</div>
         </div>
       </div>
     </div>
@@ -92,18 +99,6 @@
             これからも私たちをよろしくお願いします。
         </p>
     </div>
-</section>
-
-<section class="action-area">
-  <div class="like-container">
-    <button id="like-btn" class="like-button">
-      <span class="heart">❤</span> おめでとう！
-    </button>
-    <div class="counter-box">
-      <span id="like-count" class="count">124</span>
-      <span class="count-unit">人がお祝いしています</span>
-    </div>
-  </div>
 </section>
 
 <section class="bgm-section">
@@ -154,6 +149,18 @@
         </div>
     </div>
 </div>
+
+<section class="googlephoto-section">
+  <div class="photo-share-container">
+    <a href="https://photos.app.goo.gl/7codNTYrmmb6Xaqt8" target="_blank" class="photo-share-btn">
+      <!--<i class="fas fa-image google-icon"></i> <span>当日の写真を共有する</span>-->
+      <!--<i class="fas fa-images google-icon"></i> <span>当日の写真を共有する</span>-->
+      <i class="fas fa-camera google-icon"></i> <span>当日の写真を共有する</span>
+      <!--<i class="fas fa-cloud-upload-alt google-icon"></i> <span>当日の写真を共有する</span>-->
+    </a>
+    <p class="photo-share-note">※皆様が撮影したお写真をアップロードいただけると嬉しいです！</p>
+  </div>
+</section>
 
 <section class="timeline-section">
     <div class="timeline">
@@ -207,30 +214,6 @@
             </div>
         </div>
     </div>
-</section>
-
-<section class="relation-map-section">
-  <div class="relation-map">
-    <div class="node center">
-      <div class="label">あなた</div>
-    </div>
-
-    <div class="node-group">
-      <div class="node partner">彼女</div>
-      <div class="node family">家族</div>
-      <div class="node friends">友人</div>
-      <div class="node relatives">親戚</div>
-      <div class="node colleagues">会社の同僚</div>
-    </div>
-
-    <div class="lines"></div>
-  </div>
-  <div id="message-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <h3 id="modal-name"></h3> <p id="modal-text"></p>
-    </div>
-  </div>
 </section>
 
 <script src="app.js"></script>

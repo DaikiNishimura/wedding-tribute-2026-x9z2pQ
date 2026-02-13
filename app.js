@@ -1,21 +1,78 @@
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    const heroText = document.querySelector('.fade-in-text');
+
+    // 1. ローダーを非表示にする
+    setTimeout(() => {
+        loader.classList.add('loaded');
+        
+        // 2. メインのテキストをふわっと出す
+        setTimeout(() => {
+            if (heroText) heroText.classList.add('visible');
+        }, 500); // ローダーが消え始めた0.5秒後に開始
+
+    }, 2500); // 2.5秒間はオープニングを見せる
+});
+
+// スクロール時のパララックス効果（任意：画像が少し動く）
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const heroPhoto = document.querySelector('.hero-photo');
+    if (heroPhoto) {
+        // スクロールに合わせて少しだけ下にずらすことで奥行きを出す
+        heroPhoto.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+});
+
 function startHeroSlider() {
   const slides = document.querySelectorAll('.slider-img');
   let currentSlide = 0;
 
   setInterval(() => {
-    // 現在の画像から active クラスを消す
+    // 1. 現在の画像から active を外す
     slides[currentSlide].classList.remove('active');
 
-    // 次のスライド番号へ（3枚なので 0→1→2→0... とループ）
+    // 2. 次のスライドへ
     currentSlide = (currentSlide + 1) % slides.length;
 
-    // 次の画像に active クラスを付与
+    // 3. 次の画像に active を付与
+    // これにより、新しい画像は scale(1) からアニメーションを再開します
     slides[currentSlide].classList.add('active');
-  }, 4000); // 4秒ごとに実行
+    
+  }, 4000); // 4秒ごとに切り替え
 }
 
 // ページ読み込み時に実行
 window.addEventListener('DOMContentLoaded', startHeroSlider);
+
+// 新郎新婦メッセージ
+// スクロール監視の設定
+const observeAnimation = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 画面に入ったら 'is-visible' クラスを付与
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, {
+    threshold: 0.2 // 要素の20%が見えたら発動
+  });
+
+  // 対象の要素をすべて監視
+  document.querySelectorAll('.animate-trigger').forEach(el => {
+    observer.observe(el);
+  });
+};
+
+// 実行
+document.addEventListener('DOMContentLoaded', observeAnimation);
+document.querySelectorAll('.flip-card').forEach(card => {
+  card.addEventListener('click', () => {
+    // クリックするたびに 'is-flipped' クラスを付け外しする
+    card.classList.toggle('is-flipped');
+  });
+});
 
 // createFloatingHeart関数の中身を少し変更
 window.createFloatingHeart = function() {
@@ -172,13 +229,13 @@ window.onclick = (event) => {
   if (event.target == modal) modal.style.display = 'none';
 };
 
-// script.js の一番上に追記
-const password = prompt("合言葉を入力してください（二人の記念日4桁など）");
+// // script.js の一番上に追記
+// const password = prompt("合言葉を入力してください（二人の記念日4桁など）");
 
-if (password !== "1225") { // 例：1225が正解の場合
-  alert("合言葉が違います。ページを表示できません。");
-  document.body.innerHTML = "<h1>認証が必要です</h1>"; // 中身を消す
-}
+// if (password !== "1225") { // 例：1225が正解の場合
+//   alert("合言葉が違います。ページを表示できません。");
+//   document.body.innerHTML = "<h1>認証が必要です</h1>"; // 中身を消す
+// }
 
 // 3. 特大演出の関数
 function launchCelebration() {
