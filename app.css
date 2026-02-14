@@ -350,11 +350,12 @@ section {
 }
 
 .message-row {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  max-width: 1000px;
-  margin: 0 auto 80px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto 120px auto;
 }
 
 .couple-photo img {
@@ -368,6 +369,7 @@ section {
 /* メッセージボックスの基本設定 */
 .message-box {
   flex: 1;
+  max-width: 500px;
   padding: 30px;
   background: #fdfcfb;
   border-radius: 15px;
@@ -384,24 +386,23 @@ section {
 }
 
 .message-box h3 {
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 20px;
-  /* RAKUGEI風：文字の間隔を広げる */
-  letter-spacing: 0.15em; 
-  border-bottom: 1px solid #d4af37;
-  display: inline-block;
+    font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #2c2c2c;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #d4af37;
+    display: inline-block;
 }
 
 .message-text p {
-  /* RAKUGEI風：かなり広めの行間と文字間隔 */
-  line-height: 2.2; 
-  letter-spacing: 0.08em;
-  font-size: 0.95rem;
-  color: #444;
-  margin: 0;
-  /* 5行程度の文章が美しく見える設定 */
+    font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+    line-height: 2.4; /* 広めの行間 */
+    letter-spacing: 0.1em;
+    font-size: 1rem;
+    color: #4a4a4a;
+    margin: 0;
 }
 
 /* 新婦側のメッセージを写真側に寄せる設定（再確認） */
@@ -410,13 +411,7 @@ section {
   padding-right: 20px; /* 写真とのバランス調整 */
 }
 
-/* モバイル時は読みやすさ優先で中央揃え */
-@media (max-width: 768px) {
-  .bride-row .message-box {
-    text-align: center;
-    padding-right: 40px;
-  }
-}
+
 
 /* 右から流れる（新郎用） */
 .right-slide {
@@ -434,39 +429,65 @@ section {
   transform: translateX(0);
 }
 
-/* モバイル対応：新婦も写真を上にしたい場合は order を調整 */
+/* モバイル対応 */
 @media (max-width: 768px) {
-  .message-row {
-    flex-direction: column;
-    text-align: center;
-  }
-  .bride-row {
-    flex-direction: column-reverse; /* 写真を上に */
-  }
+    .message-row {
+        flex-direction: column !important;
+        gap: 40px;
+        text-align: center;
+    }
+    .message-box {
+        text-align: center !important;
+    }
+    .flip-card {
+        width: 220px;
+        height: 220px;
+    }
 }
 
 /* カード回転の土台 */
 .flip-card {
-  background-color: transparent;
-  width: 200px;
-  height: 200px;
-  perspective: 1000px; /* 立体感を出す */
-  cursor: pointer;
+    width: 240px;
+    height: 240px;
+    perspective: 1000px;
+    cursor: pointer;
+    /* 初期状態：透明で少し下に配置 */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.5s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* 画面に入った時に付与されるクラス */
+.animate-trigger.is-visible .flip-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 画像に触れた（ホバー）時の浮き上がり */
+.flip-card:hover {
+    transform: translateY(-15px) scale(1.02); /* 上に15px浮いて少し大きく */
+}
+
+/* ホバー時に影も深くして浮遊感を出す */
+.flip-card:hover .flip-card-front,
+.flip-card:hover .flip-card-back {
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+/* --- カードの裏返し構造 --- */
 .flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d; /* 子要素の3D配置を維持 */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
 }
 
 /* タッチ（またはホバー）で回転 */
 .flip-card:active .flip-card-inner,
 .flip-card.is-flipped .flip-card-inner {
   transform: rotateY(180deg);
+  animation: none !important;
 }
 
 .flip-card-front, .flip-card-back {

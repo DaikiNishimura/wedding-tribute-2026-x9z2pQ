@@ -136,7 +136,6 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-
 // 動画終了後に表示するメッセージ
 document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('highlight-video');
