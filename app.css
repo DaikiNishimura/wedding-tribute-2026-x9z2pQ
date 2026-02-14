@@ -429,19 +429,17 @@ section {
   transform: translateX(0);
 }
 
-/* モバイル対応 */
+/* モバイル対応：画面が狭い時だけ縦並びにし、写真は上に */
 @media (max-width: 768px) {
     .message-row {
-        flex-direction: column !important;
-        gap: 40px;
-        text-align: center;
+        flex-direction: column-reverse !important; /* 写真を上に配置 */
+        gap: 30px;
+    }
+    .bride-row {
+        flex-direction: column !important; /* 新婦も同じ縦順に */
     }
     .message-box {
         text-align: center !important;
-    }
-    .flip-card {
-        width: 220px;
-        height: 220px;
     }
 }
 
