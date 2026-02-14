@@ -1,24 +1,10 @@
 body {
-  /* 複数の色を混ぜた広大なグラデーション */
-  background: linear-gradient(-45deg, #fff5f5, #f0f4f8, #f9f0ff, #fff9f0);
   background-size: 400% 400%; /* 背景を大きく広げて動く余白を作る */
   /*animation: gradientBG 15s ease infinite; /* 15秒かけてゆっくりループ */
   margin: 0;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* 背景を波打たせるアニメーション */
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 /* セクション間のわずかな隙間も許さない設定 */
 section {
   margin-top: -1px; 
@@ -184,8 +170,6 @@ section {
 .profile-section, 
 .video-section, 
 .bgm-section,
-.timeline-section,
-.relation-map-section,
 .threads-container {
   position: relative;
   z-index: 10; /* 画像の上に重なるように大きな値を指定 */
@@ -203,17 +187,6 @@ section {
   box-shadow: 0 -15px 30px rgba(0,0,0,0.1);
 }
 
-/* 花びらのスタイル */
-.petal {
-  position: absolute;
-  background-color: #ffc0cb; /* ピンクの花びら */
-  border-radius: 150% 0 150% 0;
-  opacity: 0.8;
-  z-index: 1;
-  pointer-events: none; /* クリックを邪魔しない */
-  animation: fall linear forwards;
-}
-
 @keyframes fall {
   0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 1; }
   100% { transform: translateY(110vh) translateX(100px) rotate(360deg); opacity: 0; }
@@ -226,47 +199,6 @@ section {
   justify-content: center;
   align-items: center;
   /*border-bottom: 1px solid #eee; /* 年表との区切り */
-}
-
-.like-container {
-  text-align: center;
-  position: relative;
-}
-
-.like-button {
-  background: #e74c3c; /* ボタンをより目立つ色に */
-  color: white;
-  border: none;
-  padding: 15px 40px;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
-  transition: all 0.2s ease;
-  margin-bottom: 10px;
-}
-
-.like-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
-}
-
-.counter-box {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.count {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #e74c3c;
-  display: block;
-}
-
-/* ハートがボタンから飛び出す演出用の基準点 */
-#like-btn {
-  position: relative;
 }
 
 /* app.css に追記 */
@@ -311,14 +243,6 @@ section {
   letter-spacing: 0.05em;
 }
 
-/* 全体のスタイル設定 */
-.timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 0 20px;
-}
-
 /* Googleフォト風アイコンのカラー設定 */
 .google-icon {
   font-size: 1.4rem;
@@ -350,12 +274,12 @@ section {
 }
 
 .message-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
-    max-width: 1100px;
-    margin: 0 auto 120px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto 120px auto;
 }
 
 .couple-photo img {
@@ -410,8 +334,6 @@ section {
   text-align: right;
   padding-right: 20px; /* 写真とのバランス調整 */
 }
-
-
 
 /* 右から流れる（新郎用） */
 .right-slide {
@@ -534,32 +456,6 @@ section {
   width: 100%;
 }
 
-.message-card-wrapper {
-  flex: 1;
-  max-width: 240px;  /* 180px から 240px にサイズアップ */
-  aspect-ratio: 3 / 4;
-  perspective: 1000px;
-}
-
-.message-card {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
-  cursor: pointer;
-}
-
-/* 新郎：セージグリーン */
-.groom-card .card-face {
-  background-color: #94a684; /* 画像に近い落ち着いた緑 */
-}
-
-/* 新婦：ダスティーピンク */
-.bride-card .card-face {
-  background-color: #c68c91; /* 画像に近い落ち着いたピンク */
-}
-
 /* 写真の周りの白枠と装飾ライン */
 .inner-frame {
   position: absolute;
@@ -579,117 +475,6 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* 裏面のデザインも色に合わせる */
-.groom-card .card-back {
-  border: 3px solid #94a684;
-  background-color: #fafdff;
-}
-
-.bride-card .card-back {
-  border: 3px solid #c68c91;
-  background-color: #fffafb;
-}
-
-/* ラベルの見た目を画像に合わせる */
-.card-label {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
-  color: #fff; /* 文字を白に */
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
-
-/* 裏返った時の状態 */
-.message-card.is-flipped {
-  transform: rotateY(180deg);
-}
-
-.card-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden; /* 裏側を見せない */
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.card-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.card-label {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.9); /* 少し濃くして文字を見やすく */
-  text-align: center;
-  padding: 8px 0;    /* 少し高さを出す */
-  font-size: 14px;   /* 文字も少し大きく */
-  font-weight: bold;
-  letter-spacing: 0.1em;
-}
-
-.card-back {
-  background: #fffafa;
-  transform: rotateY(180deg);
-  display: flex;
-  align-items: center;      /* 上下に文字が長い場合は flex-start に変えると上詰めになります */
-  justify-content: center;
-  padding: 10px;            /* 余白を少し削って内側を広くする */
-  border: 2px solid #ffeded;
-  overflow: hidden;         /* 親要素ははみ出し禁止 */
-}
-
-.back-content {
-  text-align: center;
-  width: 100%;
-  max-height: 95%;          /* カードの高さに収める */
-  overflow-y: auto;         /* 文字が多い場合はカード内でスクロール可能にする */
-  padding-right: 5px;       /* スクロールバー用の微調整 */
-}
-
-/* スクロールバーをオシャレに隠す、または細くする設定 */
-.back-content::-webkit-scrollbar {
-  width: 4px;
-}
-.back-content::-webkit-scrollbar-thumb {
-  background: #ffeded;
-  border-radius: 10px;
-}
-
-.back-content h3 {
-  font-size: 15px;
-  color: #e74c3c;
-  margin-bottom: 8px;
-  margin-top: 5px;
-}
-
-/* 裏面のテキストサイズも合わせて微調整 */
-.back-content h3 {
-  font-size: 16px;   /* 14px から 16px へ */
-  margin-bottom: 12px;
-}
-
-.back-content p {
-  font-size: 12.5px;        /* 0.5px単位で微調整 */
-  line-height: 1.5;
-  color: #333;
-  margin: 0;
-  text-align: left;         /* メッセージは左寄せの方が読みやすいです */
-  word-break: break-all;    /* 長い英単語などで改行が壊れないように */
-}
-
-.message-card.is-flipped {
-  transform: rotateY(180deg); /* これがカードを回転させる命令です */
 }
 
 .highlight-movie-container {
@@ -923,214 +708,11 @@ section {
     color: #fff; padding: 30px 20px; text-align: left;
 }
 
-/* 中央の縦線 */
-.timeline::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  background-color: #ddd;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -1px;
-}
-
-/* 各アイテムのコンテナ */
-.timeline-item {
-  padding: 10px 40px;
-  position: relative;
-  width: 50%;
-  box-sizing: border-box;
-}
-
-/* 奇数番目（左側） */
-.timeline-item:nth-child(odd) {
-  left: 0;
-  text-align: right;
-}
-
-/* 偶数番目（右側） */
-.timeline-item:nth-child(even) {
-  left: 50%;
-}
-
-/* 中央のドット（点） */
-.timeline-item::after {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  right: -8px;
-  background-color: #fff;
-  border: 2px solid #3498db;
-  border-radius: 50%;
-  top: 15px;
-  z-index: 1;
-}
-
-.timeline-item:nth-child(even)::after {
-  left: -8px;
-}
-
-/* 日付と内容の装飾 */
-.timeline-date {
-  font-weight: bold;
-  color: #3498db;
-  margin-bottom: 5px;
-}
-
-.timeline-content {
-  padding: 15px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* スマホ対応（画面が狭いときは1列にする） */
-@media screen and (max-width: 600px) {
-  .timeline::after { left: 31px; }
-  .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; text-align: left !important; }
-  .timeline-item::after { left: 21px; }
-  .timeline-item:nth-child(even) { left: 0%; }
-}
-
-/* timeline-content にアニメーション用の設定を追加 */
-.timeline-content {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out; /* 0.8秒かけて動く */
-}
-
-/* このクラスがついたら表示される */
-.timeline-content.is-show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* 元のスタイルに transition が設定されている前提です */
-.timeline-content {
-  cursor: pointer; /* マウスを乗せた時に指マークにする */
-  transition: all 0.3s ease; /* 動きを滑らかにする（表示アニメーションとは別に設定） */
-}
-
-/* ホバーした時の状態 */
-.timeline-content:hover {
-  background-color: #ffffff; /* 背景を白く */
-  box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2); /* 青みがかった影を強調 */
-  transform: translateY(-5px) scale(1.02); /* 少し上に浮き、わずかに大きく */
-  border: 1px solid #3498db; /* 境界線をブランドカラーに */
-}
-
-/* カード全体のベース */
-.card-flip {
-  position: relative;
-  width: 100%;
-  min-height: 150px;
-  cursor: pointer;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d; /* 3D空間を有効にする */
-  padding: 0; /* 内側のパーツで余白をとるため0に */
-  background: transparent;
-  box-shadow: none;
-}
-
-/* クリック時に付与されるクラス */
-.card-flip.is-flipped {
-  transform: rotateY(180deg);
-}
-
-/* 表と裏の共通設定 */
-.card-front, .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden; /* 裏側を見えなくする重要プロパティ */
-  border-radius: 8px;
-  padding: 15px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-/* 表側の色 */
-.card-front {
-  background: #f9f9f9;
-  z-index: 2;
-}
-
-/* 裏側の設定 */
-.card-back {
-  background: #fff;
-  transform: rotateY(180deg); /* 最初から裏返しにしておく */
-}
-
-.card-back img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-/* 裏面のコンテナ設定 */
-.card-back {
-  background: #fff;
-  transform: rotateY(180deg);
-  overflow: hidden; /* はみ出した部分を隠す */
-  padding: 0;        /* 写真を全面に出す場合は0に */
-  display: flex;
-  flex-direction: column;
-}
-
-/* 画像のスタイル設定 */
-.card-back img {
-  width: 100%;
-  height: 100%;     /* 親要素（カード）の高さに合わせる */
-  object-fit: cover; /* 縦横比を維持したまま、枠いっぱいに広げて余った分をカット */
-  display: block;
-}
-
-/* もし画像の下に文字を入れたい場合 */
-.card-back p {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.8); /* 半透明の白背景 */
-  margin: 0;
-  padding: 10px;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.card-front h3 i {
-  margin-right: 10px;    /* 文字との間隔 */
-  color: #e74c3c;        /* ハートやボタンと色を合わせる */
-  font-size: 1.1rem;     /* 文字より少し強調 */
-  vertical-align: middle;
-}
-
-.timeline-item:hover .card-front h3 i {
-  animation: wobble 0.5s ease;
-}
-
 @keyframes wobble {
   0% { transform: rotate(0deg); }
   25% { transform: rotate(-10deg); }
   75% { transform: rotate(10deg); }
   100% { transform: rotate(0deg); }
-}
-
-.relation-map {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  height: 400px;
-  margin: 50px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f0f4f8;
-  border-radius: 50%; /* 円形の背景にすると相関図らしい */
 }
 
 /* 共通のノードスタイル */
@@ -1158,17 +740,6 @@ section {
 .friends { top: 30%; right: 10%; }
 .relatives { bottom: 20%; left: 15%; }
 .colleagues { bottom: 20%; right: 15%; }
-
-/* 中央から線を引くイメージの擬似要素 */
-.relation-map::before {
-  content: "";
-  position: absolute;
-  width: 80%;
-  height: 80%;
-  border: 1px dashed #ccc;
-  border-radius: 50%;
-  z-index: 1;
-}
 
 /* モーダルの背景（暗幕） */
 .modal {
@@ -1279,41 +850,6 @@ section {
     font-size: 11px;  /* 小さなスマホでは文字を少し凝縮 */
   }
 
-  /* 2. 年表のレイアウトを1列にする */
-  .timeline::after {
-    left: 31px; /* 縦線を左側に寄せる */
-  }
-
-  .timeline-item {
-    width: 100%;
-    padding-left: 70px; /* 線と内容の間の余白 */
-    padding-right: 20px;
-    text-align: left !important; /* 左寄せに統一 */
-  }
-
-  /* 3. 年表のドット位置を左側に統一 */
-  .timeline-item::after {
-    left: 21px;
-    right: auto;
-  }
-
-  .timeline-item:nth-child(even) {
-    left: 0;
-  }
-
-  /* 4. 相関図を縦並びにする、または縮小する */
-  .relation-map {
-    transform: scale(0.8); /* 全体を少し小さくして収める */
-    margin-top: 0;
-  }
-
-  /* 5. 「いいね」ボタンを大きく、押しやすく */
-  .like-button {
-    width: 80%;
-    padding: 20px;
-    font-size: 1.4rem;
-  }
-
   /* Threadsコンテナの余白調整 */
   .threads-container {
     width: 100%;
@@ -1347,7 +883,6 @@ section {
 img, textarea, input {
   max-width: 100%;
 }
-
 
 /* タップした瞬間にボタンを少し沈ませる（フィードバック） */
 .card-flip:active, .node:active {
