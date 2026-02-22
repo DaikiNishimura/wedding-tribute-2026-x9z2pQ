@@ -12,14 +12,14 @@ window.addEventListener('load', () => {
     }, 2500); 
 });
 
-// スクロール時のパララックス
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroPhoto = document.querySelector('.hero-photo');
-    if (heroPhoto) {
-        heroPhoto.style.transform = `translateY(${scrolled * 0.3}px)`;
-    }
-});
+// // スクロール時のパララックス
+// window.addEventListener('scroll', () => {
+//     const scrolled = window.pageYOffset;
+//     const heroPhoto = document.querySelector('.hero-photo');
+//     if (heroPhoto) {
+//         heroPhoto.style.transform = `translateY(${scrolled * 0.3}px)`;
+//     }
+// });
 
 // スライダー機能
 function startHeroSlider() {
